@@ -1,0 +1,61 @@
+Put stuff done here, or trying.
+
+
+Plan: Jacob will try and figure out A* Greedy for our initial solution on main.py or as a method of block? By Monday. Will figure 
+
+-Plan will be put in Plan.
+    Set current state = initial state.
+    Make a list of lists
+    make a list of lists goal state
+    (see 1)
+    [List of stacks] = [ [stack 1], [stack 2]...], [[a under b under c]], c.clear=True, c.on=b, b.on=a, a.on=T 
+    (1) Set the heuristic of each block to be the number of blocks it is under, (O(n)), and set each base to be (B=true), and every other to be (B=false) in the initial state, ad (B=true) in goal state. (O(n), same time as previous). We can make both these lists at the same time through clever insertions (not O(n) due to memory allocations)
+  Inherit these objects in the initial list(s). (but be sure they are copied, so that the two lists are seperate).
+
+  A* Greedy 
+  make l of l init, goal
+  add to the queue the base of the goals (initial search space)
+  while (l of l init != l of l goal) (remove lists of stacks from consideration when obtained from both lists, so more like when they are non empty), 
+         Check the top of eahc list for a base, 
+              If B, unstack, putdown.
+              If !B, search next layer down. if found, unstack putdown progressively until base is uncovered.
+              add to search space the block expected on top of found B, (N),
+              If N is found to be cheaper than B, we unstack N, and putdown on B, then mark N.B=true. (We do not consider stacking on blocks that are not B=true. This could be made with a list, but its cheaper for us to just check the tops of the current state lists)
+             if N after stack is the top of the expected list (and B=true), remove that list from the goal and intial state. (Note we should have recorded the moves up til now, either in a print or a string).          
+
+
+    
+
+
+
+Plan: Khan will get an outline of the paper out by monday.
+
+Kevin: ???
+
+
+10/27/22
+ Jacob solves the list lists problem. Makes heuristic. Later Jacob will make the heuristic sort actually try actions. He will also try to figure out the complexity and optimizationsof the initial algorithm.
+
+
+Khan: Outline of paper by monday
+Kevin:????
+
+11/1/22
+  Jacob worked a bit more on the Heur function. Mainly just providing pseudo code for later, and making sure it's sensible. Additionally fixed a bug in the under block code which kept returning C, was simply an if statement condition that needed to be checked. 
+   Jacob made as much of a paper outline as our current project requires, since our algorithm isn't finished yet the only parts of the paper that are relevant are the background literature. 
+   Quick note Jacob did let Khan and Kevin know Thursday that Friday-Sunday he'd be unlikely to get more work done on the project, however Jacob also didn't do much in regards to AI Prog. Mon. 
+
+Just saw main_khan.py. It seems he's brute forcing the solution thus far. 
+How I understand Khan's approach is to check every state's available top layer to find the most appropraite spot, which is the same place I'm at with my code when it comes to execution of that step. At this moment it doesn't seem his algorithm interprets how valuable a 'spot' is for that state with a given block. The sorting algorithm Jacob has figures the appropraite spot based on the tuple, and explores based on whether a given block is in the que or not. (Que of blocks vs Que of states). 
+
+Benefits of Khan (Thus far, with minimal thinking on my part, I'm not thinking too deeply on it since I'm not sure which direction he want's it to go in since theres not a ton of comments.) I could see the simplicity in adding ot the que and the move sub command which tries every action for every block immediately available. 
+Benefits of Sort (Again minimal thinking, mainly because I haven't seen much interaction from the group on it besides the one day I was able to discuss with Khan and we split up goals for monday last wensday(I think))
+We create the initial and goal states with tuple access to expected neighbor IDs (this can replace Curent and Goal listlists eventually if we care to), we have a definite search space (top of each list) that will eventually find our que blocks. We immediatley (once found) stop searching, and go find the appropriate action to take. Two actions, either take the block from the top, and find the appropraite location based on the tuple, OR if theres a block above it (block not clear) we find the block above it (tuple access but again there may be a better way, that's why I inldued Goal and Initial ListList still) and figure out the most appropraite location for it (If it's not in the que anddin't get flagged it's just going to go on the table). 
+This leads to minimal 'destacking' redudnatly, and redundant stacking. This also builds constructively (since we can't mvoe chunks of blocks) we want to get our foundation as fast as possible and build on the foundations that we unearth. The current implementation doesn't check whether a block is in ti's appropraite location from the start, which is why the initial and goal heuristic might ultimately be used since polarity can help describe the desired layer (up or down) that block wants. Then instead of looking at appropraite locations we can look at which values are non zero, and figure out the least drastic layers to 'switch' (requires indexing of the list of lists, but is an attractive proposal for avoiding 'layers' and redundant action checks through lists of lists of elements. instead compares direclty each element in the appropraite layer it wants. This could be an interesting optimization problem too since it gives me the same vibe as one.)
+
+
+
+
+11/1/22
+Kevin's gone again. Khan and Jacob reconnected on the state of the project. Jacob made a rough draft of the paper, to be elaborated on as the code finishes, however the first 2 sections and last section or two have been given to Kevin (If Khan passes on the message and it's cool with him), while the approach and previous work is Jacob and Khans write portion.
+Khan will likely use the global block world heurisitc for his A*, at Jacobs request he included a few comments describing what's he have to add in the event Jacob or Kevin has time to help. Jacob made main2_JH.py with improved readability, and compartmentalized code.

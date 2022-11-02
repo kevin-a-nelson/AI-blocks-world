@@ -1,0 +1,60 @@
+Hey guys, Jacob here.
+
+Here's my thinking
+
+List of blocks [S,S,S,S, T, T]
+S = Square, T=Triangle right?
+
+Step 1, we go through and check whether the block is on the 'goal' block, if so we remove it from our list.
+If not, at this stage only move the triangle blocks off of the block the are on.
+*Assumption:We have no limit to the amount of places we can place blocks [and thus we aren't working with a hanoi problem]. 
+
+Step 2, with our list now reduced to something like 'check list' [S,S,S, T] (So 3 S blocks are correctly stacked, and a triangle was as well), we now look for whether the bottom of (1st) towers with triangle and (2nd) towers without triangles match any of the tops of the other towers. if a tower is matching the goal state, we take out the top block from our 'search' list.  Our 'Search list' gets updated whenever something is added to the table, or removed from the table.
+
+Now if she want's us to apply one of the search problem structures here we'd generate a bfs structure on each attempt a new leaf is being added.
+NOTE: If we have infinite space, I believe the most efficent step will always be taking a tower onto the table to reach a non goal block, rather than doing some zig zaging: Example:
+
+Goal
+1
+2 4
+3 5
+Init
+1
+4 2
+3 5
+(1, onto 2), (2 onto table), (4 onto 5), (2 onto 3) is just as or more efficent than
+(4 onto 2), (2 onto 3), (4 onto 5), (1 onto 2).
+It's less 'space' efficent but that would add to the complexity of the problem, introducing a new variable (commonly called b for other problems) which is expanded as necessariy in a bfs structure.
+
+
+Big note: To remove degenercy (cycles), we would put each state into a list, and then before adding a node to the tree we'd ask whether that state already exists in the list. Hence why a bfs would be best to generate a path to the optimal solution (since degenercy would tkae extra steps to obtain a solution that our optimal has). We also get a clear stoping point, where we could potentially not generate every problmeatic state (Though we could until the list of nodes is exhaustive)
+
+Jacob 10/23/22^
+
+
+
+
+So there's a paper also, we need to find 2 related works to this puzzle.
+
+sorting algorithms, Tower of hanoi would be an interesting one, except we can move more than just the top block.
+
+Sorting multiple lists might also be an interesting route.
+
+
+
+
+
+
+10/25/22
+Khan and Jacob made Heuristic, , agreed on Jacob making a main_hilst1.py (make through shell, python3 __name of file to run__, cp main.py main_hilst.py). (Click over to shell)
+
+
+Jacob will try to get a heuristic/class thing working .
+
+Jacob will make a seperate python that doens't integrate her code just to make the heuristic work a bit. 
+
+Khan will outline paper,
+
+all together integrate Jacob Heuristic 
+
+For integration, A* greedy first, then the heuristic.

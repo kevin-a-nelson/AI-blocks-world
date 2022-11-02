@@ -1,0 +1,13 @@
+Progress:
+Completed work building operators as per instructions in document.
+Implemented Queue structure to hold states to be explored, needed for A* search.
+Begun work to search for all ways to move clear blocks in a given state.
+
+Needs to be done: 
+create heuristic and count steps taken so far for a given state. 
+
+I couldn't really follow Jacob's code. It's mostly one big function that should be split into something more readable and approachable so that we can all contribute. 
+
+I see I've been "assigned" the task of writing an outline. This will be difficult without us being on the same page with what's happening in our implementation. 
+
+Since we're citing references in our report, we should consult our sources and get inspiration from them before implementing. 
